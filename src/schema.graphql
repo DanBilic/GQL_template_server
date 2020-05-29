@@ -1,0 +1,111 @@
+type Query {
+  me: User!
+  post: Post!
+  users(query: String): [User!]!
+  posts(query: String): [Post!]!
+  blogs: [Blog!]!
+  blog(id: ID!): Blog!
+}
+
+type Mutation {
+  createUser(data: CreateUserInput!): User!
+  deleteUser(id: ID!): User!
+  updateUser(id: ID!, data: UpdateUserInput!): User!
+  createPost(data: CreatePostInput): Post!
+  deletePost(id: ID!): Post!
+  updatePost(id: ID!, data: UpdatePostInput): Post!
+  createBlog(data: CreateBlogInput): Blog!
+  deleteBlog(id: ID!): Blog!
+  updateBlog(id: ID!, data: UpdateBlogInput!): Blog!
+}
+
+type Subscription {
+  post(userId: ID!): Post!
+  allPosts: Post!
+}
+
+input CreateUserInput {
+  #name: String!
+  #email: String!
+  name: String!
+  email: String!
+  password: String!
+}
+
+input UpdateUserInput {
+  #name: String
+  #email: String
+
+  name: String
+  email: String
+}
+
+input CreatePostInput {
+  title: String!
+  description: String!
+  user: ID!
+  blog: ID!
+}
+
+input UpdatePostInput {
+  #title: String
+  #description: String
+
+  title: String
+  description: String
+}
+
+input CreateBlogInput {
+  #title: String!
+  #topic: String!
+  #user: ID!
+
+  #id: ID!
+  name: String!
+  description: String!
+  email: String!
+  user: ID!
+}
+
+input UpdateBlogInput {
+  #title: String
+  #topic: String
+
+  name: String
+  description: String
+  email: String
+  user: ID
+}
+
+type User {
+  id: ID
+  name: String! @deprecated
+  email: String!
+  password: String
+  createdAt: String
+  blogs: [Blog!]!
+  #posts: [Post!]!
+  #blogs: [Blog!]!
+}
+
+type Post {
+  id: ID!
+  title: String!
+  description: String!
+  user: User!
+  blog: Blog!
+}
+
+type Blog {
+  #id: ID!
+  #title: String!
+  #topic: String!
+  #user: User!
+  #posts: [Post!]!
+
+  id: ID!
+  name: String!
+  description: String!
+  email: String!
+  user: User!
+}
