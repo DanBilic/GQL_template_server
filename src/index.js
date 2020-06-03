@@ -2,6 +2,7 @@ const fs = require("fs");
 const { makeExecutableSchema } = require("graphql-tools");
 
 import { GraphQLServer, PubSub } from "graphql-yoga";
+import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import colors from "colors";
 import connectDB from "../config/mongo_db";
@@ -49,6 +50,7 @@ const server = new GraphQLServer({
   },
 });
 
+server.express.use(bodyParser.json());
 server.express.use("/http-api", useSofa({ schema }));
 
 server.start(() => {

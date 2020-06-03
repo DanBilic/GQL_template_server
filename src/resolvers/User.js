@@ -18,6 +18,7 @@ const User = {
   blogs: async (parent, args, ctx, info) => {
     //const blogs = await Blog.find({ user: parent.id });
 
+    // dataloader probleme mit sofa
     const blogs = await ctx.loaders.blogForUser.load(parent.id.toString());
 
     return blogs;
