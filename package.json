@@ -17,7 +17,7 @@
     "dataloader": "^2.0.0",
     "dotenv": "^8.2.0",
     "graphql-yoga": "^1.18.3",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mongoose": "^5.9.15",
     "sofa-api": "^0.7.0",
     "uuid": "^8.1.0"
